@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/elevators"
 )
 
 type ElevatorsServer struct {
+	gen generator.IGenerator
+}
+
+func NewElevatorsServer(gen generator.IGenerator) *ElevatorsServer {
+	return &ElevatorsServer{gen: gen}
 }
 
 func (e *ElevatorsServer) CreateElevator(ctx context.Context, request *elevators.CreateElevatorRequest) (*elevators.CreateElevatorResponse, error) {
@@ -26,8 +32,4 @@ func (e *ElevatorsServer) DeleteElevator(ctx context.Context, request *elevators
 
 func (e *ElevatorsServer) GetElevatorFloors(ctx context.Context, request *elevators.GetElevatorFloorsRequest) (*elevators.GetElevatorFloorsResponse, error) {
 	panic("implement me")
-}
-
-func NewElevatorsServer() *ElevatorsServer {
-	return &ElevatorsServer{}
 }

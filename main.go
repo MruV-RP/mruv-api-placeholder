@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-api-placeholder/services"
 	"github.com/MruV-RP/mruv-pb-go/accounts"
 	"github.com/MruV-RP/mruv-pb-go/business"
@@ -75,27 +76,28 @@ func RunGRPCServer() {
 	defer s.Stop()
 
 	//Register services
-	accounts.RegisterMruVAccountsServiceServer(s, services.NewAccountsServer())
-	business.RegisterMruVBusinessServiceServer(s, services.NewBusinessServer())
-	characters.RegisterMruVCharactersServiceServer(s, services.NewCharactersServer())
-	devtools.RegisterMruVDevToolsServiceServer(s, services.NewDevtoolsServer())
-	economy.RegisterMruVEconomyServiceServer(s, services.NewBusinessServer())
-	elevators.RegisterMruVElevatorsServiceServer(s, services.NewElevatorsServer())
-	entrances.RegisterMruVEntrancesServiceServer(s, services.NewEntrancesServer())
-	estates.RegisterMruVEstateServiceServer(s, services.NewEstatesServer())
-	gates.RegisterMruVGatesServiceServer(s, services.NewGatesServer())
-	groups.RegisterMruVGroupsServiceServer(s, services.NewGroupsServer())
-	houses.RegisterMruVHousesServiceServer(s, services.NewHousesServer())
-	items.RegisterMruVItemServiceServer(s, services.NewItemsServer())
-	jobs.RegisterMruVJobsServiceServer(s, services.NewJobsServer())
-	objects.RegisterMruVObjectsServiceServer(s, services.NewObjectsServer())
-	offers.RegisterMruVOffersServiceServer(s, services.NewOffersServer())
-	organizations.RegisterMruVOrganizationsServiceServer(s, services.NewOrganizationsServer())
-	plots.RegisterMruVPlotsServiceServer(s, services.NewPlotsServer())
-	punishments.RegisterMruVPunishmentsServiceServer(s, services.NewPunishmentsServer())
-	server.RegisterMruVServerServiceServer(s, services.NewServerServer())
-	spots.RegisterMruVSpotsServiceServer(s, services.NewSpotsServer())
-	vehicles.RegisterMruVVehiclesServiceServer(s, services.NewVehiclesServer())
+	gen := &generator.SimpleGenerator{}
+	accounts.RegisterMruVAccountsServiceServer(s, services.NewAccountsServer(gen))
+	business.RegisterMruVBusinessServiceServer(s, services.NewBusinessServer(gen))
+	characters.RegisterMruVCharactersServiceServer(s, services.NewCharactersServer(gen))
+	devtools.RegisterMruVDevToolsServiceServer(s, services.NewDevtoolsServer(gen))
+	economy.RegisterMruVEconomyServiceServer(s, services.NewBusinessServer(gen))
+	elevators.RegisterMruVElevatorsServiceServer(s, services.NewElevatorsServer(gen))
+	entrances.RegisterMruVEntrancesServiceServer(s, services.NewEntrancesServer(gen))
+	estates.RegisterMruVEstateServiceServer(s, services.NewEstatesServer(gen))
+	gates.RegisterMruVGatesServiceServer(s, services.NewGatesServer(gen))
+	groups.RegisterMruVGroupsServiceServer(s, services.NewGroupsServer(gen))
+	houses.RegisterMruVHousesServiceServer(s, services.NewHousesServer(gen))
+	items.RegisterMruVItemServiceServer(s, services.NewItemsServer(gen))
+	jobs.RegisterMruVJobsServiceServer(s, services.NewJobsServer(gen))
+	objects.RegisterMruVObjectsServiceServer(s, services.NewObjectsServer(gen))
+	offers.RegisterMruVOffersServiceServer(s, services.NewOffersServer(gen))
+	organizations.RegisterMruVOrganizationsServiceServer(s, services.NewOrganizationsServer(gen))
+	plots.RegisterMruVPlotsServiceServer(s, services.NewPlotsServer(gen))
+	punishments.RegisterMruVPunishmentsServiceServer(s, services.NewPunishmentsServer(gen))
+	server.RegisterMruVServerServiceServer(s, services.NewServerServer(gen))
+	spots.RegisterMruVSpotsServiceServer(s, services.NewSpotsServer(gen))
+	vehicles.RegisterMruVVehiclesServiceServer(s, services.NewVehiclesServer(gen))
 
 	go func() {
 		logrus.Println("Starting server.")

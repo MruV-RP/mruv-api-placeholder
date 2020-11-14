@@ -2,11 +2,17 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/common"
 	"github.com/MruV-RP/mruv-pb-go/groups"
 )
 
 type GroupsServer struct {
+	gen generator.IGenerator
+}
+
+func NewGroupsServer(gen generator.IGenerator) *GroupsServer {
+	return &GroupsServer{gen: gen}
 }
 
 func (g *GroupsServer) CreateGroup(ctx context.Context, request *groups.CreateGroupRequest) (*groups.CreateGroupResponse, error) {
@@ -83,8 +89,4 @@ func (g *GroupsServer) GetServiceStatus(ctx context.Context, request *common.Ser
 
 func (g *GroupsServer) GetServiceVersion(ctx context.Context, request *common.VersionRequest) (*common.VersionResponse, error) {
 	panic("implement me")
-}
-
-func NewGroupsServer() *GroupsServer {
-	return &GroupsServer{}
 }

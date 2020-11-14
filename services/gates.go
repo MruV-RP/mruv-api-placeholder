@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/gates"
 )
 
 type GatesServer struct {
+	gen generator.IGenerator
+}
+
+func NewGatesServer(gen generator.IGenerator) *GatesServer {
+	return &GatesServer{gen: gen}
 }
 
 func (g *GatesServer) CreateGate(ctx context.Context, request *gates.CreateGateRequest) (*gates.CreateGateResponse, error) {
@@ -46,8 +52,4 @@ func (g *GatesServer) FindNearestGate(ctx context.Context, request *gates.FindNe
 
 func (g *GatesServer) FetchAll(request *gates.FetchAllGatesRequest, server gates.MruVGatesService_FetchAllServer) error {
 	panic("implement me")
-}
-
-func NewGatesServer() *GatesServer {
-	return &GatesServer{}
 }

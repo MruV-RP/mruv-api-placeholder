@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/spots"
 )
 
 type SpotsServer struct {
+	gen generator.IGenerator
+}
+
+func NewSpotsServer(gen generator.IGenerator) *SpotsServer {
+	return &SpotsServer{gen: gen}
 }
 
 func (s *SpotsServer) CreateSpot(ctx context.Context, request *spots.CreateSpotRequest) (*spots.CreateSpotResponse, error) {
@@ -26,8 +32,4 @@ func (s *SpotsServer) DeleteSpot(ctx context.Context, request *spots.DeleteSpotR
 
 func (s *SpotsServer) FetchAll(request *spots.FetchAllSpotsRequest, server spots.MruVSpotsService_FetchAllServer) error {
 	panic("implement me")
-}
-
-func NewSpotsServer() *SpotsServer {
-	return &SpotsServer{}
 }

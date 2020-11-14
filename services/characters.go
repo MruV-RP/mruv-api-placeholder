@@ -2,11 +2,17 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/characters"
 	"github.com/MruV-RP/mruv-pb-go/common"
 )
 
 type CharactersServer struct {
+	gen generator.IGenerator
+}
+
+func NewCharactersServer(gen generator.IGenerator) *CharactersServer {
+	return &CharactersServer{gen: gen}
 }
 
 func (c *CharactersServer) CreateCharacter(ctx context.Context, request *characters.CreateCharacterRequest) (*characters.CreateCharacterResponse, error) {
@@ -43,8 +49,4 @@ func (c *CharactersServer) GetServiceStatus(ctx context.Context, request *common
 
 func (c *CharactersServer) GetServiceVersion(ctx context.Context, request *common.VersionRequest) (*common.VersionResponse, error) {
 	panic("implement me")
-}
-
-func NewCharactersServer() *CharactersServer {
-	return &CharactersServer{}
 }

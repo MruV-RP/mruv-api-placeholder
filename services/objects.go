@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/objects"
 )
 
 type ObjectsServer struct {
+	gen generator.IGenerator
+}
+
+func NewObjectsServer(gen generator.IGenerator) *ObjectsServer {
+	return &ObjectsServer{gen: gen}
 }
 
 func (o *ObjectsServer) CreateObject(ctx context.Context, request *objects.CreateObjectRequest) (*objects.CreateObjectResponse, error) {
@@ -62,8 +68,4 @@ func (o *ObjectsServer) DeleteRemoveBuilding(ctx context.Context, request *objec
 
 func (o *ObjectsServer) FetchAllObjects(request *objects.FetchAllObjectsRequest, server objects.MruVObjectsService_FetchAllObjectsServer) error {
 	panic("implement me")
-}
-
-func NewObjectsServer() *ObjectsServer {
-	return &ObjectsServer{}
 }

@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/server"
 )
 
 type ServerServer struct {
+	gen generator.IGenerator
+}
+
+func NewServerServer(gen generator.IGenerator) *ServerServer {
+	return &ServerServer{gen: gen}
 }
 
 func (s *ServerServer) RegisterServer(ctx context.Context, info *server.ServerInfo) (*server.ServerID, error) {
@@ -26,8 +32,4 @@ func (s *ServerServer) UpdateServerStatus(ctx context.Context, request *server.U
 
 func (s *ServerServer) ServerEventsStream(request *server.ServerEventsStreamRequest, server server.MruVServerService_ServerEventsStreamServer) error {
 	panic("implement me")
-}
-
-func NewServerServer() *ServerServer {
-	return &ServerServer{}
 }

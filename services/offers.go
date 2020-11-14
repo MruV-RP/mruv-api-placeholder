@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/offers"
 )
 
 type OffersServer struct {
+	gen generator.IGenerator
+}
+
+func NewOffersServer(gen generator.IGenerator) *OffersServer {
+	return &OffersServer{gen: gen}
 }
 
 func (o *OffersServer) CreateOffer(ctx context.Context, request *offers.CreateOfferRequest) (*offers.CreateOfferResponse, error) {
@@ -26,8 +32,4 @@ func (o *OffersServer) DeleteOffer(ctx context.Context, request *offers.DeleteOf
 
 func (o *OffersServer) AcceptOffer(ctx context.Context, request *offers.AcceptOfferRequest) (*offers.AcceptOfferResponse, error) {
 	panic("implement me")
-}
-
-func NewOffersServer() *OffersServer {
-	return &OffersServer{}
 }

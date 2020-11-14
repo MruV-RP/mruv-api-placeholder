@@ -2,11 +2,17 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/common"
 	"github.com/MruV-RP/mruv-pb-go/devtools"
 )
 
 type DevtoolsServer struct {
+	gen generator.IGenerator
+}
+
+func NewDevtoolsServer(gen generator.IGenerator) *DevtoolsServer {
+	return &DevtoolsServer{gen: gen}
 }
 
 func (d *DevtoolsServer) GetPositions(ctx context.Context, request *devtools.GetPositionsRequest) (*devtools.GetPositionsResponse, error) {
@@ -47,8 +53,4 @@ func (d *DevtoolsServer) GetServiceStatus(ctx context.Context, request *common.S
 
 func (d *DevtoolsServer) GetServiceVersion(ctx context.Context, request *common.VersionRequest) (*common.VersionResponse, error) {
 	panic("implement me")
-}
-
-func NewDevtoolsServer() *DevtoolsServer {
-	return &DevtoolsServer{}
 }

@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/punishments"
 )
 
 type PunishmentsServer struct {
+	gen generator.IGenerator
+}
+
+func NewPunishmentsServer(gen generator.IGenerator) *PunishmentsServer {
+	return &PunishmentsServer{gen: gen}
 }
 
 func (p *PunishmentsServer) Ban(ctx context.Context, request *punishments.BanRequest) (*punishments.BanResponse, error) {
@@ -126,8 +132,4 @@ func (p *PunishmentsServer) WatchPlayerAcquittals(request *punishments.WatchPlay
 
 func (p *PunishmentsServer) WatchPunishments(request *punishments.WatchPunishmentsRequest, server punishments.MruVPunishmentsService_WatchPunishmentsServer) error {
 	panic("implement me")
-}
-
-func NewPunishmentsServer() *PunishmentsServer {
-	return &PunishmentsServer{}
 }

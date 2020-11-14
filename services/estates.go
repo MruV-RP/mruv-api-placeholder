@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/estates"
 )
 
 type EstatesServer struct {
+	gen generator.IGenerator
+}
+
+func NewEstatesServer(gen generator.IGenerator) *EstatesServer {
+	return &EstatesServer{gen: gen}
 }
 
 func (e *EstatesServer) CreateEstate(ctx context.Context, request *estates.CreateEstateRequest) (*estates.CreateEstateResponse, error) {
@@ -54,8 +60,4 @@ func (e *EstatesServer) GetEstateEntrances(ctx context.Context, request *estates
 
 func (e *EstatesServer) FetchAll(request *estates.FetchAllEstatesRequest, server estates.MruVEstateService_FetchAllServer) error {
 	panic("implement me")
-}
-
-func NewEstatesServer() *EstatesServer {
-	return &EstatesServer{}
 }

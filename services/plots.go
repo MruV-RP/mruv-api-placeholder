@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/plots"
 )
 
 type PlotsServer struct {
+	gen generator.IGenerator
+}
+
+func NewPlotsServer(gen generator.IGenerator) *PlotsServer {
+	return &PlotsServer{gen: gen}
 }
 
 func (p *PlotsServer) CreatePlot(ctx context.Context, request *plots.CreatePlotRequest) (*plots.CreatePlotResponse, error) {
@@ -22,8 +28,4 @@ func (p *PlotsServer) UpdatePlot(ctx context.Context, request *plots.UpdatePlotR
 
 func (p *PlotsServer) DeletePlot(ctx context.Context, request *plots.DeletePlotRequest) (*plots.DeletePlotResponse, error) {
 	panic("implement me")
-}
-
-func NewPlotsServer() *PlotsServer {
-	return &PlotsServer{}
 }

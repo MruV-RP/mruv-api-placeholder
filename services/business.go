@@ -11,8 +11,8 @@ type BusinessServer struct {
 	gen generator.IGenerator
 }
 
-func NewBusinessServer() *BusinessServer {
-	return &BusinessServer{gen: generator.SimpleGenerator{}}
+func NewBusinessServer(gen generator.IGenerator) *BusinessServer {
+	return &BusinessServer{gen: gen}
 }
 
 func (b *BusinessServer) RegisterProduct(ctx context.Context, request *economy.RegisterProductRequest) (*economy.RegisterProductResponse, error) {

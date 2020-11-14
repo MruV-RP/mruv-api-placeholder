@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/entrances"
 )
 
 type EntrancesServer struct {
+	gen generator.IGenerator
+}
+
+func NewEntrancesServer(gen generator.IGenerator) *EntrancesServer {
+	return &EntrancesServer{gen: gen}
 }
 
 func (e *EntrancesServer) CreateEntrance(ctx context.Context, request *entrances.CreateEntranceRequest) (*entrances.CreateEntranceResponse, error) {
@@ -46,8 +52,4 @@ func (e *EntrancesServer) Exit(ctx context.Context, request *entrances.ExitReque
 
 func (e *EntrancesServer) FetchAll(request *entrances.FetchAllEntrancesRequest, server entrances.MruVEntrancesService_FetchAllServer) error {
 	panic("implement me")
-}
-
-func NewEntrancesServer() *EntrancesServer {
-	return &EntrancesServer{}
 }

@@ -11,8 +11,8 @@ type ItemsServer struct {
 	gen generator.IGenerator
 }
 
-func NewItemsServer() *ItemsServer {
-	return &ItemsServer{gen: generator.SimpleGenerator{}}
+func NewItemsServer(gen generator.IGenerator) *ItemsServer {
+	return &ItemsServer{gen: gen}
 }
 
 func (i *ItemsServer) CreateItem(ctx context.Context, item *items.Item) (*items.ItemID, error) {

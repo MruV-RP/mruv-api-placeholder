@@ -2,15 +2,17 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-api-placeholder/utils"
 	"github.com/MruV-RP/mruv-pb-go/accounts"
 )
 
 type AccountsServer struct {
+	gen generator.IGenerator
 }
 
-func NewAccountsServer() *AccountsServer {
-	return &AccountsServer{}
+func NewAccountsServer(gen generator.IGenerator) *AccountsServer {
+	return &AccountsServer{gen: gen}
 }
 
 func (a *AccountsServer) RegisterAccount(ctx context.Context, request *accounts.RegisterAccountRequest) (*accounts.RegisterAccountResponse, error) {

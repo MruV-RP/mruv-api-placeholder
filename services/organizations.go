@@ -2,10 +2,16 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/organizations"
 )
 
 type OrganizationsServer struct {
+	gen generator.IGenerator
+}
+
+func NewOrganizationsServer(gen generator.IGenerator) *OrganizationsServer {
+	return &OrganizationsServer{gen: gen}
 }
 
 func (o *OrganizationsServer) CreateOrganization(ctx context.Context, request *organizations.CreateOrganizationRequest) (*organizations.CreateOrganizationResponse, error) {
@@ -30,8 +36,4 @@ func (o *OrganizationsServer) AssignLeader(ctx context.Context, request *organiz
 
 func (o *OrganizationsServer) UnassignLeader(ctx context.Context, request *organizations.UnassignLeaderRequest) (*organizations.UnassignLeaderResponse, error) {
 	panic("implement me")
-}
-
-func NewOrganizationsServer() *OrganizationsServer {
-	return &OrganizationsServer{}
 }
