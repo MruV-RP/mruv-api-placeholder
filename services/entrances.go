@@ -15,39 +15,39 @@ func NewEntrancesServer(gen generator.IGenerator) *EntrancesServer {
 }
 
 func (e *EntrancesServer) CreateEntrance(ctx context.Context, request *entrances.CreateEntranceRequest) (*entrances.CreateEntranceResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&entrances.CreateEntranceResponse{}).(*entrances.CreateEntranceResponse), nil
 }
 
 func (e *EntrancesServer) GetEntrance(ctx context.Context, request *entrances.GetEntranceRequest) (*entrances.GetEntranceResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&entrances.GetEntranceResponse{}).(*entrances.GetEntranceResponse), nil
 }
 
 func (e *EntrancesServer) UpdateEntrance(ctx context.Context, request *entrances.UpdateEntranceRequest) (*entrances.UpdateEntranceResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&entrances.UpdateEntranceResponse{}).(*entrances.UpdateEntranceResponse), nil
 }
 
 func (e *EntrancesServer) DeleteEntrance(ctx context.Context, request *entrances.DeleteEntranceRequest) (*entrances.DeleteEntranceResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&entrances.DeleteEntranceResponse{}).(*entrances.DeleteEntranceResponse), nil
 }
 
 func (e *EntrancesServer) Lock(ctx context.Context, request *entrances.LockRequest) (*entrances.LockResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&entrances.LockResponse{}).(*entrances.LockResponse), nil
 }
 
 func (e *EntrancesServer) Unlock(ctx context.Context, request *entrances.UnlockRequest) (*entrances.UnlockResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&entrances.UnlockResponse{}).(*entrances.UnlockResponse), nil
 }
 
 func (e *EntrancesServer) FindNearestEntrance(ctx context.Context, request *entrances.FindNearestEntranceRequest) (*entrances.FindNearestEntranceResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&entrances.FindNearestEntranceResponse{}).(*entrances.FindNearestEntranceResponse), nil
 }
 
 func (e *EntrancesServer) Enter(ctx context.Context, request *entrances.EnterRequest) (*entrances.EnterResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&entrances.EnterResponse{}).(*entrances.EnterResponse), nil
 }
 
 func (e *EntrancesServer) Exit(ctx context.Context, request *entrances.ExitRequest) (*entrances.ExitResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&entrances.ExitResponse{}).(*entrances.ExitResponse), nil
 }
 
 func (e *EntrancesServer) FetchAll(request *entrances.FetchAllEntrancesRequest, server entrances.MruVEntrancesService_FetchAllServer) error {

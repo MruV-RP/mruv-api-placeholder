@@ -81,7 +81,7 @@ func RunGRPCServer() {
 	business.RegisterMruVBusinessServiceServer(s, services.NewBusinessServer(gen))
 	characters.RegisterMruVCharactersServiceServer(s, services.NewCharactersServer(gen))
 	devtools.RegisterMruVDevToolsServiceServer(s, services.NewDevtoolsServer(gen))
-	economy.RegisterMruVEconomyServiceServer(s, services.NewBusinessServer(gen))
+	economy.RegisterMruVEconomyServiceServer(s, services.NewEconomyServer(gen))
 	elevators.RegisterMruVElevatorsServiceServer(s, services.NewElevatorsServer(gen))
 	entrances.RegisterMruVEntrancesServiceServer(s, services.NewEntrancesServer(gen))
 	estates.RegisterMruVEstateServiceServer(s, services.NewEstatesServer(gen))

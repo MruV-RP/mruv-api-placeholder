@@ -15,19 +15,19 @@ func NewServerServer(gen generator.IGenerator) *ServerServer {
 }
 
 func (s *ServerServer) RegisterServer(ctx context.Context, info *server.ServerInfo) (*server.ServerID, error) {
-	panic("implement me")
+	return s.gen.FillWithTestData(&server.ServerID{}).(*server.ServerID), nil
 }
 
 func (s *ServerServer) GetRegisteredServers(ctx context.Context, request *server.GetRegisteredServersRequest) (*server.GetRegisteredServersResponse, error) {
-	panic("implement me")
+	return s.gen.FillWithTestData(&server.GetRegisteredServersResponse{}).(*server.GetRegisteredServersResponse), nil
 }
 
 func (s *ServerServer) GetServerInfo(ctx context.Context, id *server.ServerID) (*server.ServerInfo, error) {
-	panic("implement me")
+	return s.gen.FillWithTestData(&server.ServerInfo{}).(*server.ServerInfo), nil
 }
 
 func (s *ServerServer) UpdateServerStatus(ctx context.Context, request *server.UpdateServerStatusRequest) (*server.UpdateServerStatusResponse, error) {
-	panic("implement me")
+	return s.gen.FillWithTestData(&server.UpdateServerStatusResponse{}).(*server.UpdateServerStatusResponse), nil
 }
 
 func (s *ServerServer) ServerEventsStream(request *server.ServerEventsStreamRequest, server server.MruVServerService_ServerEventsStreamServer) error {

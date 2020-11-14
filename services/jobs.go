@@ -15,17 +15,17 @@ func NewJobsServer(gen generator.IGenerator) *JobsServer {
 }
 
 func (j *JobsServer) CreateJob(ctx context.Context, request *jobs.CreateJobRequest) (*jobs.CreateJobResponse, error) {
-	panic("implement me")
+	return j.gen.FillWithTestData(&jobs.CreateJobResponse{}).(*jobs.CreateJobResponse), nil
 }
 
 func (j *JobsServer) GetJob(ctx context.Context, request *jobs.GetJobRequest) (*jobs.GetJobResponse, error) {
-	panic("implement me")
+	return j.gen.FillWithTestData(&jobs.GetJobResponse{}).(*jobs.GetJobResponse), nil
 }
 
 func (j *JobsServer) UpdateJob(ctx context.Context, request *jobs.UpdateJobRequest) (*jobs.UpdateJobResponse, error) {
-	panic("implement me")
+	return j.gen.FillWithTestData(&jobs.UpdateJobResponse{}).(*jobs.UpdateJobResponse), nil
 }
 
 func (j *JobsServer) DeleteJob(ctx context.Context, request *jobs.DeleteJobRequest) (*jobs.DeleteJobResponse, error) {
-	panic("implement me")
+	return j.gen.FillWithTestData(&jobs.DeleteJobResponse{}).(*jobs.DeleteJobResponse), nil
 }

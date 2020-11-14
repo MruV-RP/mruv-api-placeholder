@@ -15,17 +15,17 @@ func NewVehiclesServer(gen generator.IGenerator) *VehiclesServer {
 }
 
 func (v *VehiclesServer) CreateVehicle(ctx context.Context, request *vehicles.CreateVehicleRequest) (*vehicles.CreateVehicleResponse, error) {
-	panic("implement me")
+	return v.gen.FillWithTestData(&vehicles.CreateVehicleResponse{}).(*vehicles.CreateVehicleResponse), nil
 }
 
 func (v *VehiclesServer) GetVehicle(ctx context.Context, request *vehicles.GetVehicleRequest) (*vehicles.GetVehicleResponse, error) {
-	panic("implement me")
+	return v.gen.FillWithTestData(&vehicles.GetVehicleResponse{}).(*vehicles.GetVehicleResponse), nil
 }
 
 func (v *VehiclesServer) UpdateVehicle(ctx context.Context, request *vehicles.UpdateVehicleRequest) (*vehicles.UpdateVehicleResponse, error) {
-	panic("implement me")
+	return v.gen.FillWithTestData(&vehicles.UpdateVehicleResponse{}).(*vehicles.UpdateVehicleResponse), nil
 }
 
 func (v *VehiclesServer) DeleteVehicle(ctx context.Context, request *vehicles.DeleteVehicleRequest) (*vehicles.DeleteVehicleResponse, error) {
-	panic("implement me")
+	return v.gen.FillWithTestData(&vehicles.DeleteVehicleResponse{}).(*vehicles.DeleteVehicleResponse), nil
 }

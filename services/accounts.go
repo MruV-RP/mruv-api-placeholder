@@ -16,6 +16,10 @@ func NewAccountsServer(gen generator.IGenerator) *AccountsServer {
 }
 
 func (a *AccountsServer) RegisterAccount(ctx context.Context, request *accounts.RegisterAccountRequest) (*accounts.RegisterAccountResponse, error) {
+	if a.gen != nil {
+		return a.gen.FillWithTestData(&accounts.RegisterAccountResponse{}).(*accounts.RegisterAccountResponse), nil
+	}
+
 	if request.Login == "good" {
 		return &accounts.RegisterAccountResponse{
 			Success:   true,
@@ -34,6 +38,10 @@ func (a *AccountsServer) RegisterAccount(ctx context.Context, request *accounts.
 }
 
 func (a *AccountsServer) LogIn(ctx context.Context, request *accounts.LogInRequest) (*accounts.LogInResponse, error) {
+	if a.gen != nil {
+		return a.gen.FillWithTestData(&accounts.LogInResponse{}).(*accounts.LogInResponse), nil
+	}
+
 	if request.Login == "good" {
 		return &accounts.LogInResponse{
 			Success:   true,
@@ -52,6 +60,10 @@ func (a *AccountsServer) LogIn(ctx context.Context, request *accounts.LogInReque
 }
 
 func (a *AccountsServer) IsAccountExist(ctx context.Context, request *accounts.IsAccountExistRequest) (*accounts.IsAccountExistResponse, error) {
+	if a.gen != nil {
+		return a.gen.FillWithTestData(&accounts.IsAccountExistResponse{}).(*accounts.IsAccountExistResponse), nil
+	}
+
 	if request.Login == "good" {
 		return &accounts.IsAccountExistResponse{
 			Exists: true,
@@ -70,6 +82,10 @@ func (a *AccountsServer) IsAccountExist(ctx context.Context, request *accounts.I
 }
 
 func (a *AccountsServer) GetAccount(ctx context.Context, request *accounts.GetAccountRequest) (*accounts.GetAccountResponse, error) {
+	if a.gen != nil {
+		return a.gen.FillWithTestData(&accounts.GetAccountResponse{}).(*accounts.GetAccountResponse), nil
+	}
+
 	if request.Login == "good" {
 		return &accounts.GetAccountResponse{
 			Login: "TestLogin",
@@ -85,6 +101,10 @@ func (a *AccountsServer) GetAccount(ctx context.Context, request *accounts.GetAc
 }
 
 func (a *AccountsServer) GetAccountCharacters(ctx context.Context, request *accounts.GetAccountCharactersRequest) (*accounts.GetAccountCharactersResponse, error) {
+	if a.gen != nil {
+		return a.gen.FillWithTestData(&accounts.GetAccountCharactersResponse{}).(*accounts.GetAccountCharactersResponse), nil
+	}
+
 	if request.Login == "good" {
 		return &accounts.GetAccountCharactersResponse{
 			CharacterIds: []uint32{1},

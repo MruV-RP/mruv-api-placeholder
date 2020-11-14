@@ -15,21 +15,21 @@ func NewOffersServer(gen generator.IGenerator) *OffersServer {
 }
 
 func (o *OffersServer) CreateOffer(ctx context.Context, request *offers.CreateOfferRequest) (*offers.CreateOfferResponse, error) {
-	panic("implement me")
+	return o.gen.FillWithTestData(&offers.CreateOfferResponse{}).(*offers.CreateOfferResponse), nil
 }
 
 func (o *OffersServer) GetOffer(ctx context.Context, request *offers.GetOfferRequest) (*offers.GetOfferResponse, error) {
-	panic("implement me")
+	return o.gen.FillWithTestData(&offers.GetOfferResponse{}).(*offers.GetOfferResponse), nil
 }
 
 func (o *OffersServer) UpdateOffer(ctx context.Context, request *offers.UpdateOfferRequest) (*offers.UpdateOfferResponse, error) {
-	panic("implement me")
+	return o.gen.FillWithTestData(&offers.UpdateOfferResponse{}).(*offers.UpdateOfferResponse), nil
 }
 
 func (o *OffersServer) DeleteOffer(ctx context.Context, request *offers.DeleteOfferRequest) (*offers.DeleteOfferResponse, error) {
-	panic("implement me")
+	return o.gen.FillWithTestData(&offers.DeleteOfferResponse{}).(*offers.DeleteOfferResponse), nil
 }
 
 func (o *OffersServer) AcceptOffer(ctx context.Context, request *offers.AcceptOfferRequest) (*offers.AcceptOfferResponse, error) {
-	panic("implement me")
+	return o.gen.FillWithTestData(&offers.AcceptOfferResponse{}).(*offers.AcceptOfferResponse), nil
 }

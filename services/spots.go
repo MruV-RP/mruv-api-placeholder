@@ -15,19 +15,19 @@ func NewSpotsServer(gen generator.IGenerator) *SpotsServer {
 }
 
 func (s *SpotsServer) CreateSpot(ctx context.Context, request *spots.CreateSpotRequest) (*spots.CreateSpotResponse, error) {
-	panic("implement me")
+	return s.gen.FillWithTestData(&spots.CreateSpotResponse{}).(*spots.CreateSpotResponse), nil
 }
 
 func (s *SpotsServer) GetSpot(ctx context.Context, request *spots.GetSpotRequest) (*spots.GetSpotResponse, error) {
-	panic("implement me")
+	return s.gen.FillWithTestData(&spots.GetSpotResponse{}).(*spots.GetSpotResponse), nil
 }
 
 func (s *SpotsServer) UpdateSpot(ctx context.Context, request *spots.UpdateSpotRequest) (*spots.UpdateSpotResponse, error) {
-	panic("implement me")
+	return s.gen.FillWithTestData(&spots.UpdateSpotResponse{}).(*spots.UpdateSpotResponse), nil
 }
 
 func (s *SpotsServer) DeleteSpot(ctx context.Context, request *spots.DeleteSpotRequest) (*spots.DeleteSpotResponse, error) {
-	panic("implement me")
+	return s.gen.FillWithTestData(&spots.DeleteSpotResponse{}).(*spots.DeleteSpotResponse), nil
 }
 
 func (s *SpotsServer) FetchAll(request *spots.FetchAllSpotsRequest, server spots.MruVSpotsService_FetchAllServer) error {

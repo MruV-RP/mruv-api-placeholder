@@ -15,17 +15,17 @@ func NewPlotsServer(gen generator.IGenerator) *PlotsServer {
 }
 
 func (p *PlotsServer) CreatePlot(ctx context.Context, request *plots.CreatePlotRequest) (*plots.CreatePlotResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&plots.CreatePlotResponse{}).(*plots.CreatePlotResponse), nil
 }
 
 func (p *PlotsServer) GetPlot(ctx context.Context, request *plots.GetPlotRequest) (*plots.GetPlotResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&plots.GetPlotResponse{}).(*plots.GetPlotResponse), nil
 }
 
 func (p *PlotsServer) UpdatePlot(ctx context.Context, request *plots.UpdatePlotRequest) (*plots.UpdatePlotResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&plots.UpdatePlotResponse{}).(*plots.UpdatePlotResponse), nil
 }
 
 func (p *PlotsServer) DeletePlot(ctx context.Context, request *plots.DeletePlotRequest) (*plots.DeletePlotResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&plots.DeletePlotResponse{}).(*plots.DeletePlotResponse), nil
 }

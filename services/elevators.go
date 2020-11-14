@@ -15,21 +15,21 @@ func NewElevatorsServer(gen generator.IGenerator) *ElevatorsServer {
 }
 
 func (e *ElevatorsServer) CreateElevator(ctx context.Context, request *elevators.CreateElevatorRequest) (*elevators.CreateElevatorResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&elevators.CreateElevatorResponse{}).(*elevators.CreateElevatorResponse), nil
 }
 
 func (e *ElevatorsServer) GetElevator(ctx context.Context, request *elevators.GetElevatorRequest) (*elevators.GetElevatorResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&elevators.GetElevatorResponse{}).(*elevators.GetElevatorResponse), nil
 }
 
 func (e *ElevatorsServer) UpdateElevator(ctx context.Context, request *elevators.UpdateElevatorRequest) (*elevators.UpdateElevatorResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&elevators.UpdateElevatorResponse{}).(*elevators.UpdateElevatorResponse), nil
 }
 
 func (e *ElevatorsServer) DeleteElevator(ctx context.Context, request *elevators.DeleteElevatorRequest) (*elevators.DeleteElevatorResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&elevators.DeleteElevatorResponse{}).(*elevators.DeleteElevatorResponse), nil
 }
 
 func (e *ElevatorsServer) GetElevatorFloors(ctx context.Context, request *elevators.GetElevatorFloorsRequest) (*elevators.GetElevatorFloorsResponse, error) {
-	panic("implement me")
+	return e.gen.FillWithTestData(&elevators.GetElevatorFloorsResponse{}).(*elevators.GetElevatorFloorsResponse), nil
 }

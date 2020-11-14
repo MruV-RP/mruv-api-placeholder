@@ -15,79 +15,79 @@ func NewPunishmentsServer(gen generator.IGenerator) *PunishmentsServer {
 }
 
 func (p *PunishmentsServer) Ban(ctx context.Context, request *punishments.BanRequest) (*punishments.BanResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.BanResponse{}).(*punishments.BanResponse), nil
 }
 
 func (p *PunishmentsServer) Block(ctx context.Context, request *punishments.BlockRequest) (*punishments.BlockResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.BlockResponse{}).(*punishments.BlockResponse), nil
 }
 
 func (p *PunishmentsServer) Warn(ctx context.Context, request *punishments.WarnRequest) (*punishments.WarnResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.WarnResponse{}).(*punishments.WarnResponse), nil
 }
 
 func (p *PunishmentsServer) AdminJail(ctx context.Context, request *punishments.AdminJailRequest) (*punishments.AdminJailResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.AdminJailResponse{}).(*punishments.AdminJailResponse), nil
 }
 
 func (p *PunishmentsServer) MuteGlobalChats(ctx context.Context, request *punishments.MuteGlobalChatsRequest) (*punishments.MuteGlobalChatsResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.MuteGlobalChatsResponse{}).(*punishments.MuteGlobalChatsResponse), nil
 }
 
 func (p *PunishmentsServer) UnBan(ctx context.Context, request *punishments.UnBanRequest) (*punishments.UnBanResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.UnBanResponse{}).(*punishments.UnBanResponse), nil
 }
 
 func (p *PunishmentsServer) UnBlock(ctx context.Context, request *punishments.UnBlockRequest) (*punishments.UnBlockResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.UnBlockResponse{}).(*punishments.UnBlockResponse), nil
 }
 
 func (p *PunishmentsServer) UnWarn(ctx context.Context, request *punishments.UnWarnRequest) (*punishments.UnWarnResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.UnWarnResponse{}).(*punishments.UnWarnResponse), nil
 }
 
 func (p *PunishmentsServer) UnAdminJail(ctx context.Context, request *punishments.UnAdminJailRequest) (*punishments.UnAdminJailResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.UnAdminJailResponse{}).(*punishments.UnAdminJailResponse), nil
 }
 
 func (p *PunishmentsServer) UnMuteGlobalChats(ctx context.Context, request *punishments.UnMuteGlobalChatsRequest) (*punishments.UnMuteGlobalChatsResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.UnMuteGlobalChatsResponse{}).(*punishments.UnMuteGlobalChatsResponse), nil
 }
 
 func (p *PunishmentsServer) GetPlayerBans(ctx context.Context, request *punishments.GetPlayerBansRequest) (*punishments.GetPlayerBansResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.GetPlayerBansResponse{}).(*punishments.GetPlayerBansResponse), nil
 }
 
 func (p *PunishmentsServer) GetPlayerWarns(ctx context.Context, request *punishments.GetPlayerWarnsRequest) (*punishments.GetPlayerWarnsResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.GetPlayerWarnsResponse{}).(*punishments.GetPlayerWarnsResponse), nil
 }
 
 func (p *PunishmentsServer) GetPlayerAdminJail(ctx context.Context, request *punishments.GetPlayerAdminJailRequest) (*punishments.GetPlayerAdminJailResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.GetPlayerAdminJailResponse{}).(*punishments.GetPlayerAdminJailResponse), nil
 }
 
 func (p *PunishmentsServer) GetBan(ctx context.Context, request *punishments.GetBanRequest) (*punishments.BanMessage, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.BanMessage{}).(*punishments.BanMessage), nil
 }
 
 func (p *PunishmentsServer) GetWarn(ctx context.Context, request *punishments.GetWarnRequest) (*punishments.WarnMessage, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.WarnMessage{}).(*punishments.WarnMessage), nil
 }
 
 func (p *PunishmentsServer) GetBlock(ctx context.Context, request *punishments.GetBlockRequest) (*punishments.BlockMessage, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.BlockMessage{}).(*punishments.BlockMessage), nil
 }
 
 func (p *PunishmentsServer) IsPlayerBanned(ctx context.Context, request *punishments.IsPlayerBannedRequest) (*punishments.IsPlayerBannedResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.IsPlayerBannedResponse{}).(*punishments.IsPlayerBannedResponse), nil
 }
 
 func (p *PunishmentsServer) IsCharacterBlocked(ctx context.Context, request *punishments.IsCharacterBlockedRequest) (*punishments.IsCharacterBlockedResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.IsCharacterBlockedResponse{}).(*punishments.IsCharacterBlockedResponse), nil
 }
 
 func (p *PunishmentsServer) IsCharacterJailed(ctx context.Context, request *punishments.IsCharacterJailedRequest) (*punishments.IsCharacterJailedResponse, error) {
-	panic("implement me")
+	return p.gen.FillWithTestData(&punishments.IsCharacterJailedResponse{}).(*punishments.IsCharacterJailedResponse), nil
 }
 
 func (p *PunishmentsServer) WatchBans(request *punishments.WatchBansRequest, server punishments.MruVPunishmentsService_WatchBansServer) error {

@@ -16,27 +16,27 @@ func NewCharactersServer(gen generator.IGenerator) *CharactersServer {
 }
 
 func (c *CharactersServer) CreateCharacter(ctx context.Context, request *characters.CreateCharacterRequest) (*characters.CreateCharacterResponse, error) {
-	panic("implement me")
+	return c.gen.FillWithTestData(&characters.CreateCharacterResponse{}).(*characters.CreateCharacterResponse), nil
 }
 
 func (c *CharactersServer) GetCharacter(ctx context.Context, request *characters.GetCharacterRequest) (*characters.GetCharacterResponse, error) {
-	panic("implement me")
+	return c.gen.FillWithTestData(&characters.GetCharacterResponse{}).(*characters.GetCharacterResponse), nil
 }
 
 func (c *CharactersServer) UpdateCharacter(ctx context.Context, request *characters.UpdateCharacterRequest) (*characters.UpdateCharacterResponse, error) {
-	panic("implement me")
+	return c.gen.FillWithTestData(&characters.UpdateCharacterResponse{}).(*characters.UpdateCharacterResponse), nil
 }
 
 func (c *CharactersServer) DeleteCharacter(ctx context.Context, request *characters.DeleteCharacterRequest) (*characters.DeleteCharacterResponse, error) {
-	panic("implement me")
+	return c.gen.FillWithTestData(&characters.DeleteCharacterResponse{}).(*characters.DeleteCharacterResponse), nil
 }
 
 func (c *CharactersServer) PermanentCharacterKill(ctx context.Context, id *characters.CharacterID) (*characters.CharacterID, error) {
-	panic("implement me")
+	return c.gen.FillWithTestData(&characters.CharacterID{}).(*characters.CharacterID), nil
 }
 
 func (c *CharactersServer) ChangeClothes(ctx context.Context, request *characters.ChangeClothesRequest) (*characters.ChangeClothesResponse, error) {
-	panic("implement me")
+	return c.gen.FillWithTestData(&characters.ChangeClothesResponse{}).(*characters.ChangeClothesResponse), nil
 }
 
 func (c *CharactersServer) DeathsStream(request *characters.DeathStreamRequest, server characters.MruVCharactersService_DeathsStreamServer) error {
@@ -44,9 +44,9 @@ func (c *CharactersServer) DeathsStream(request *characters.DeathStreamRequest, 
 }
 
 func (c *CharactersServer) GetServiceStatus(ctx context.Context, request *common.ServiceStatusRequest) (*common.ServiceStatusResponse, error) {
-	panic("implement me")
+	return c.gen.FillWithTestData(&common.ServiceStatusResponse{}).(*common.ServiceStatusResponse), nil
 }
 
 func (c *CharactersServer) GetServiceVersion(ctx context.Context, request *common.VersionRequest) (*common.VersionResponse, error) {
-	panic("implement me")
+	return c.gen.FillWithTestData(&common.VersionResponse{}).(*common.VersionResponse), nil
 }
