@@ -25,6 +25,9 @@ import (
 	"github.com/MruV-RP/mruv-pb-go/server"
 	"github.com/MruV-RP/mruv-pb-go/spots"
 	"github.com/MruV-RP/mruv-pb-go/vehicles"
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	grpc_logrus "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
+	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -58,7 +61,16 @@ func RunGRPCServer() {
 	logrus.Infoln("Listener started on", listener.Addr())
 
 	//serve gRPC services
-	s := grpc.NewServer(grpc.MaxRecvMsgSize(1048576))
+	s := grpc.NewServer(grpc.MaxRecvMsgSize(1048576),
+		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
+			grpc_logrus.StreamServerInterceptor(logrus.NewEntry(logrus.New())),
+			grpc_recovery.StreamServerInterceptor(),
+		)),
+		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
+			grpc_logrus.UnaryServerInterceptor(logrus.NewEntry(logrus.New())),
+			grpc_recovery.UnaryServerInterceptor(),
+		)),
+	)
 	reflection.Register(s)
 	defer s.Stop()
 
