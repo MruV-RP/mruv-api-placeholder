@@ -2,11 +2,17 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/business"
 	"github.com/MruV-RP/mruv-pb-go/economy"
 )
 
 type BusinessServer struct {
+	gen generator.IGenerator
+}
+
+func NewBusinessServer() *BusinessServer {
+	return &BusinessServer{gen: generator.SimpleGenerator{}}
 }
 
 func (b *BusinessServer) RegisterProduct(ctx context.Context, request *economy.RegisterProductRequest) (*economy.RegisterProductResponse, error) {
@@ -83,8 +89,4 @@ func (b *BusinessServer) WatchBusiness(request *business.WatchBusinessRequest, s
 
 func (b *BusinessServer) WatchBusinesses(request *business.WatchBusinessesRequest, server business.MruVBusinessService_WatchBusinessesServer) error {
 	panic("implement me")
-}
-
-func NewBusinessServer() *BusinessServer {
-	return &BusinessServer{}
 }

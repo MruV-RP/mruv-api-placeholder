@@ -2,11 +2,17 @@ package services
 
 import (
 	"context"
+	"github.com/MruV-RP/mruv-api-placeholder/generator"
 	"github.com/MruV-RP/mruv-pb-go/common"
 	"github.com/MruV-RP/mruv-pb-go/items"
 )
 
 type ItemsServer struct {
+	gen generator.IGenerator
+}
+
+func NewItemsServer() *ItemsServer {
+	return &ItemsServer{gen: generator.SimpleGenerator{}}
 }
 
 func (i *ItemsServer) CreateItem(ctx context.Context, item *items.Item) (*items.ItemID, error) {
@@ -14,7 +20,7 @@ func (i *ItemsServer) CreateItem(ctx context.Context, item *items.Item) (*items.
 }
 
 func (i *ItemsServer) GetItem(ctx context.Context, id *items.ItemID) (*items.Item, error) {
-	panic("implement me")
+	return i.gen.FillWithTestData(&items.Item{}).(*items.Item), nil
 }
 
 func (i *ItemsServer) DeleteItem(ctx context.Context, id *items.ItemID) (*items.ItemID, error) {
@@ -30,7 +36,7 @@ func (i *ItemsServer) CreateItemType(ctx context.Context, itemType *items.ItemTy
 }
 
 func (i *ItemsServer) GetItemType(ctx context.Context, id *items.ItemTypeID) (*items.ItemType, error) {
-	panic("implement me")
+	return i.gen.FillWithTestData(&items.ItemType{}).(*items.ItemType), nil
 }
 
 func (i *ItemsServer) DeleteItemType(ctx context.Context, id *items.ItemTypeID) (*items.ItemTypeID, error) {
@@ -103,8 +109,4 @@ func (i *ItemsServer) GetServiceStatus(ctx context.Context, request *common.Serv
 
 func (i *ItemsServer) GetServiceVersion(ctx context.Context, request *common.VersionRequest) (*common.VersionResponse, error) {
 	panic("implement me")
-}
-
-func NewItemsServer() *ItemsServer {
-	return &ItemsServer{}
 }

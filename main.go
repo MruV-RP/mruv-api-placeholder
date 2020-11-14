@@ -37,6 +37,14 @@ import (
 	"os/signal"
 )
 
+func main() {
+	viper.AutomaticEnv()
+	viper.SetDefault("HTTP_PORT", 8080)
+	viper.SetDefault("GRPC_PORT", 8081)
+
+	RunGRPCServer()
+}
+
 func RunGRPCServer() {
 	// if we crash the go code, we get the file name and line number in log
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
@@ -115,12 +123,4 @@ func setUpgRPCGateway() error {
 
 	// Start HTTP server (and proxy calls to gRPC server endpoint)
 	return http.ListenAndServe(fmt.Sprintf("%s:%d", viper.GetString("HOST"), viper.GetInt("HTTP_PORT")), mux)
-}
-
-func main() {
-	viper.AutomaticEnv()
-	viper.SetDefault("HTTP_PORT", 8080)
-	viper.SetDefault("GRPC_PORT", 8081)
-
-	RunGRPCServer()
 }
