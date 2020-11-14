@@ -8,6 +8,22 @@ import (
 type SimpleGenerator struct {
 }
 
+func (s SimpleGenerator) FillWithTestData(object interface{}) interface{} {
+	typ := reflect.TypeOf(object).Elem()
+	result := reflect.ValueOf(object).Elem()
+	for i := 0; i < typ.NumField(); i++ {
+		field := typ.Field(i)
+		fmt.Printf("Field type: %v Field name: %v\n", field.Type, field.Name)
+		switch field.Type.Kind() {
+		case reflect.String:
+			result.Field(i).SetString(fmt.Sprintf("Test%s", field.Name))
+		case reflect.Int:
+			result.Field(i).SetInt(int64(i))
+		}
+	}
+	return object
+}
+
 func (s SimpleGenerator) GenerateData(t reflect.Type) interface{} {
 	result := reflect.New(t).Elem()
 	for i := 0; i < t.NumField(); i++ {
