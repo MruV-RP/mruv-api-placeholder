@@ -11,32 +11,23 @@ type SimpleGenerator struct {
 func (s SimpleGenerator) FillWithTestData(object interface{}) interface{} {
 	typ := reflect.TypeOf(object).Elem()
 	result := reflect.ValueOf(object).Elem()
+	fieldCounter := 0
 	for i := 0; i < typ.NumField(); i++ {
+		if !result.Field(i).CanInterface() {
+			continue // continue on unexported fields
+		}
+
 		field := typ.Field(i)
 		fmt.Printf("Field type: %v Field name: %v\n", field.Type, field.Name)
 		switch field.Type.Kind() {
 		case reflect.String:
 			result.Field(i).SetString(fmt.Sprintf("Test%s", field.Name))
 		case reflect.Int:
-			result.Field(i).SetInt(int64(i))
+			result.Field(i).SetInt(int64(fieldCounter))
 		}
+		fieldCounter++
 	}
 	return object
-}
-
-func (s SimpleGenerator) GenerateData(t reflect.Type) interface{} {
-	result := reflect.New(t).Elem()
-	for i := 0; i < t.NumField(); i++ {
-		field := t.Field(i)
-		fmt.Printf("Field type: %v Field name: %v\n", field.Type, field.Name)
-		switch field.Type.Kind() {
-		case reflect.String:
-			result.Field(i).SetString(fmt.Sprintf("Test%s", field.Name))
-		case reflect.Int:
-			result.Field(i).SetInt(int64(i))
-		}
-	}
-	return result.Interface()
 }
 
 func initializeStruct(t reflect.Type, v reflect.Value) {
