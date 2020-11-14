@@ -26,6 +26,8 @@ func (s SimpleGenerator) FillWithTestData(object interface{}) interface{} {
 			result.Field(i).SetInt(int64(fieldCounter))
 		case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
 			result.Field(i).SetUint(uint64(fieldCounter))
+		case reflect.Float32, reflect.Float64:
+			result.Field(i).SetFloat(float64(fieldCounter) + 0.1488)
 		}
 	}
 	return object
