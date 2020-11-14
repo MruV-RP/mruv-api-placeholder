@@ -18,14 +18,15 @@ func (s SimpleGenerator) FillWithTestData(object interface{}) interface{} {
 		}
 
 		field := typ.Field(i)
-		fmt.Printf("Field type: %v Field name: %v\n", field.Type, field.Name)
+		fieldCounter++
 		switch field.Type.Kind() {
 		case reflect.String:
 			result.Field(i).SetString(fmt.Sprintf("Test%s", field.Name))
-		case reflect.Int:
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 			result.Field(i).SetInt(int64(fieldCounter))
+		case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+			result.Field(i).SetUint(uint64(fieldCounter))
 		}
-		fieldCounter++
 	}
 	return object
 }
