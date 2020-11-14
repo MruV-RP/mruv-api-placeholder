@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  mruv-api-placeholder:
+    build:
+      .
+    environment:
+      - GRPC_PORT=8085
+      - HTTP_PORT=8086
+    ports:
+      - '8085:8085'
+      - '8086:8086'
+    expose:
+      - '8085'
+      - '8086'
