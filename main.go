@@ -128,10 +128,71 @@ func setUpgRPCGateway() error {
 	// Register gRPC server endpoint
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 	mux := runtime.NewServeMux()
-	err := accounts.RegisterMruVAccountsServiceHandlerFromEndpoint(ctx, mux,
-		fmt.Sprintf("%s:%d", viper.GetString("HOST"), viper.GetInt("GRPC_PORT")),
-		opts)
-	if err != nil {
+	eptString := fmt.Sprintf("%s:%d", viper.GetString("HOST"), viper.GetInt("GRPC_PORT"))
+	if err := accounts.RegisterMruVAccountsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := business.RegisterMruVBusinessServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := characters.RegisterMruVCharactersServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := economy.RegisterMruVEconomyServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := elevators.RegisterMruVElevatorsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := entrances.RegisterMruVEntrancesServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := estates.RegisterMruVEstateServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := gates.RegisterMruVGatesServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := groups.RegisterMruVGroupsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := houses.RegisterMruVHousesServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := items.RegisterMruVItemServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := jobs.RegisterMruVJobsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := objects.RegisterMruVMovableObjectsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := objects.RegisterMruVObjectModelsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := objects.RegisterMruVObjectsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := offers.RegisterMruVOffersServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := organizations.RegisterMruVOrganizationsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := plots.RegisterMruVPlotsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := punishments.RegisterMruVPunishmentsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := server.RegisterMruVServerServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := spots.RegisterMruVSpotsServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
+		return err
+	}
+	if err := vehicles.RegisterMruVVehiclesServiceHandlerFromEndpoint(ctx, mux, eptString, opts); err != nil {
 		return err
 	}
 
