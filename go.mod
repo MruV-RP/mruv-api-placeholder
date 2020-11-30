@@ -3,7 +3,7 @@ module github.com/MruV-RP/mruv-api-placeholder
 go 1.15
 
 require (
-	github.com/MruV-RP/mruv-pb-go v0.9.0
+	github.com/MruV-RP/mruv-pb-go v0.9.2
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.0.1
 	github.com/sirupsen/logrus v1.7.0
