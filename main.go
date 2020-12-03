@@ -45,8 +45,8 @@ import (
 
 func main() {
 	viper.AutomaticEnv()
-	viper.SetDefault("HTTP_PORT", 8085)
-	viper.SetDefault("GRPC_PORT", 8086)
+	viper.SetDefault("GRPC_PORT", 8085)
+	viper.SetDefault("HTTP_PORT", 8086)
 
 	RunGRPCServer()
 }
@@ -54,23 +54,24 @@ func main() {
 func RunGRPCServer() {
 	// if we crash the go code, we get the file name and line number in log
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	logger := logrus.NewEntry(logrus.New())
 
-	logrus.Infoln("Starting listener for gRPC API")
+	logger.Infoln("Starting listener for gRPC API")
 	listener, err := net.Listen("tcp",
 		fmt.Sprintf("%s:%d", viper.GetString("HOST"), viper.GetInt("GRPC_PORT")))
 	if err != nil {
 		logrus.Fatalf("Failed to listen: %v", err)
 	}
-	logrus.Infoln("Listener started on", listener.Addr())
+	logger.Infoln("Listener started on", listener.Addr())
 
 	//serve gRPC services
 	s := grpc.NewServer(grpc.MaxRecvMsgSize(1048576),
 		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
-			grpc_logrus.StreamServerInterceptor(logrus.NewEntry(logrus.New())),
+			grpc_logrus.StreamServerInterceptor(logger.WithField("type", "stream")),
 			grpc_recovery.StreamServerInterceptor(),
 		)),
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
-			grpc_logrus.UnaryServerInterceptor(logrus.NewEntry(logrus.New())),
+			grpc_logrus.UnaryServerInterceptor(logger.WithField("type", "unary")),
 			grpc_recovery.UnaryServerInterceptor(),
 		)),
 	)
@@ -102,16 +103,16 @@ func RunGRPCServer() {
 	vehicles.RegisterMruVVehiclesServiceServer(s, services.NewVehiclesServer(gen))
 
 	go func() {
-		logrus.Println("Starting server.")
+		logger.Println("Starting server.")
 
 		if err := s.Serve(listener); err != nil {
-			logrus.Fatalln("Failed to serve", err)
+			logger.Fatalln("Failed to serve", err)
 		}
 	}()
 
 	// Set up the gRPC gateway for REST endpoints
 	if err = setUpgRPCGateway(); err != nil {
-		logrus.Fatalln("Failed to set up gRPC gateway: ", err)
+		logger.Fatalln("Failed to set up gRPC gateway: ", err)
 	}
 
 	// Wait for CTRL+C to exit
@@ -119,7 +120,7 @@ func RunGRPCServer() {
 	signal.Notify(ch, os.Interrupt)
 
 	<-ch // Block until signal is received
-	logrus.Infoln("\nStopping the server.")
+	logger.Infoln("\nStopping the server.")
 }
 
 func setUpgRPCGateway() error {

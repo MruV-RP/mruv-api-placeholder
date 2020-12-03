@@ -10,6 +10,15 @@ services:
     ports:
       - '8085:8085'
       - '8086:8086'
-    expose:
-      - '8085'
-      - '8086'
+
+  envoy:
+    image: envoyproxy/envoy:v1.16-latest
+    volumes:
+      - ./envoy.yaml:/envoy.yaml
+      - ./logs:/logs
+    ports:
+      - '9901:9901'
+      - '8087:8087'
+    command:
+      - "--config-path /envoy.yaml"
+      - "--log-level info"
