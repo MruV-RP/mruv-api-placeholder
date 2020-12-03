@@ -26,6 +26,7 @@ import (
 	"github.com/MruV-RP/mruv-pb-go/server"
 	"github.com/MruV-RP/mruv-pb-go/spots"
 	"github.com/MruV-RP/mruv-pb-go/vehicles"
+	"github.com/golang/glog"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -39,12 +40,13 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 )
 
 func main() {
 	viper.AutomaticEnv()
-	viper.SetDefault("HTTP_PORT", 8080)
-	viper.SetDefault("GRPC_PORT", 8081)
+	viper.SetDefault("HTTP_PORT", 8085)
+	viper.SetDefault("GRPC_PORT", 8086)
 
 	RunGRPCServer()
 }
@@ -197,5 +199,36 @@ func setUpgRPCGateway() error {
 	}
 
 	// Start HTTP server (and proxy calls to gRPC server endpoint)
-	return http.ListenAndServe(fmt.Sprintf("%s:%d", viper.GetString("HOST"), viper.GetInt("HTTP_PORT")), mux)
+	addr := fmt.Sprintf("%s:%d", viper.GetString("HOST"), viper.GetInt("HTTP_PORT"))
+	s := &http.Server{
+		Addr:    addr,
+		Handler: allowCORS(mux),
+	}
+	return s.ListenAndServe()
+}
+
+// allowCORS allows Cross Origin Resoruce Sharing from any origin.
+// Don't do this without consideration in production systems.
+func allowCORS(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if origin := r.Header.Get("Origin"); origin != "" {
+			w.Header().Set("Access-Control-Allow-Origin", origin)
+			if r.Method == "OPTIONS" && r.Header.Get("Access-Control-Request-Method") != "" {
+				preflightHandler(w, r)
+				return
+			}
+		}
+		h.ServeHTTP(w, r)
+	})
+}
+
+// preflightHandler adds the necessary headers in order to serve
+// CORS from any origin using the methods "GET", "HEAD", "POST", "PUT", "DELETE"
+// We insist, don't do this without consideration in production systems.
+func preflightHandler(w http.ResponseWriter, r *http.Request) {
+	headers := []string{"Content-Type", "Accept", "Authorization"}
+	w.Header().Set("Access-Control-Allow-Headers", strings.Join(headers, ","))
+	methods := []string{"GET", "HEAD", "POST", "PUT", "DELETE"}
+	w.Header().Set("Access-Control-Allow-Methods", strings.Join(methods, ","))
+	glog.Infof("preflight request for %s", r.URL.Path)
 }
